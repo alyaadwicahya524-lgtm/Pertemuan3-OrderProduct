@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hasil Pemesanan</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Hasil Pemesanan Barang</h2>
+    <div id="hasil-pemesanan">
+      <p>Memuat data...</p>
+    </div>
+
+    <a href="index.html">
+      <button style="margin-top: 20px;">Pesan Ulang</button>
+    </a>
+  </div>
+
+  <script>
+    const data = JSON.parse(localStorage.getItem('pemesanan'));
+    const hasil = document.getElementById('hasil-pemesanan');
+
+    if (data) {
+      hasil.innerHTML = `
+        <p><strong>Nama Produk:</strong> ${data.nama_produk}</p>
+        <p><strong>Deskripsi:</strong> ${data.deskripsi}</p>
+        <p><strong>Tanggal:</strong> ${data.tanggal}</p>
+        <p><strong>Jumlah:</strong> ${data.jumlah}</p>
+        <p><strong>Tujuan Pengiriman:</strong> ${data.tujuan}</p>
+        <p><strong>Metode Pembayaran:</strong> ${data.pembayaran}</p>
+        <p><strong>Bank Tujuan:</strong> ${data.bank}</p>
+        <p><strong>Nomor Rekening:</strong> ${data.rekening}</p>
+      `;
+    } else {
+      hasil.innerHTML = `<p style="color:red;">Data tidak ditemukan. Silakan isi form terlebih dahulu.</p>`;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Form Pemesanan Barang</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Form Pemesanan Barang</h2>
+    <form id="form-pemesanan">
+      <label>Nama Produk:</label>
+      <input type="text" name="nama_produk" required>
+
+      <label>Deskripsi:</label>
+      <textarea name="deskripsi" rows="3"></textarea>
+
+      <label>Tanggal:</label>
+      <input type="date" name="tanggal" required>
+
+      <label>Jumlah Barang:</label>
+      <input type="number" name="jumlah" min="1" required>
+
+      <label>Tujuan Pengiriman:</label>
+      <input type="text" name="tujuan" required>
+
+      <label>Metode Pembayaran:</label>
+      <select name="pembayaran" required>
+        <option value="Transfer Bank">Transfer Bank</option>
+        <option value="COD">COD (Bayar di tempat)</option>
+        <option value="QRIS">QRIS</option>
+      </select>
+
+      <label>Bank Tujuan:</label>
+      <select name="bank">
+        <option value="BCA">BCA</option>
+        <option value="BNI">BNI</option>
+        <option value="Mandiri">Mandiri</option>
+        <option value="BRI">BRI</option>
+      </select>
+
+      <label>Nomor Rekening:</label>
+      <input type="text" name="rekening" required>
+
+      <button type="submit">Kirim Pesanan</button>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('form-pemesanan');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const data = new FormData(form);
+      const obj = {};
+      data.forEach((value, key) => {
+        obj[key] = value;
+      });
+      // Simpan ke localStorage
+      localStorage.setItem('pemesanan', JSON.stringify(obj));
+      // Arahkan ke halaman hasil
+      window.location.href = 'hasil.html';
+    });
+  </script>
+</body>
+</html>
